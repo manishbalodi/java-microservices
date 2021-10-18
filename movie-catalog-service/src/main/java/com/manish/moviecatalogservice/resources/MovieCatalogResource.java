@@ -28,12 +28,12 @@ public class MovieCatalogResource {
 	{
 		
 		//get all rated movie id 
-		UserRating ratings = restTemplate.getForObject("http://localhost:8082/ratingsdata/users/" + userId, UserRating.class);
+		UserRating ratings = restTemplate.getForObject("http://rating-data-service/ratingsdata/users/" + userId, UserRating.class);
 		
 		//for each movie id , call movie info service and get details
 		return ratings.getUserRating().stream().map(rating ->
 		{
-			Movie movie = restTemplate.getForObject("http://localhost:8082/movies/foo" + rating.getMovieId(), Movie.class);
+			Movie movie = restTemplate.getForObject("http://movie-info-service/movies/foo" + rating.getMovieId(), Movie.class);
 			return new CatalogItem(movie.getName(), "Test description", rating.getRating());
 		}
 		).collect(Collectors.toList());
