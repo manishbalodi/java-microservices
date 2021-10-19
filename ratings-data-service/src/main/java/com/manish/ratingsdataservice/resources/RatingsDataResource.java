@@ -25,7 +25,7 @@ public class RatingsDataResource {
 	public UserRating getUserRating(@PathVariable("userId") String userId)
 	{
 		UserRating userRating = new UserRating();
-		userRating.setUserRating((List<Rating>) Arrays.asList(new Rating("1234", 4), new Rating("5678",3)));
+		userRating.setUserRating((List<Rating>) Arrays.asList(new Rating("100", 4), new Rating("200",3)));
 		return userRating;
 	}
 

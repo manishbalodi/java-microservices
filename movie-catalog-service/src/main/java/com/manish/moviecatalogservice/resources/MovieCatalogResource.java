@@ -33,7 +33,7 @@ public class MovieCatalogResource {
 		//for each movie id , call movie info service and get details
 		return ratings.getUserRating().stream().map(rating ->
 		{
-			Movie movie = restTemplate.getForObject("http://movie-info-service/movies/foo" + rating.getMovieId(), Movie.class);
+			Movie movie = restTemplate.getForObject("http://movie-info-service/movies/" + rating.getMovieId(), Movie.class);
 			return new CatalogItem(movie.getName(), "Test description", rating.getRating());
 		}
 		).collect(Collectors.toList());
